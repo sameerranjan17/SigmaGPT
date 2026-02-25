@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start": "node --dns-result-order=ipv4first server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.1.5",
+    "nodemon": "^3.1.10",
+    "openai": "^5.5.1"
+  }
+}

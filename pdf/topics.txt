@@ -1,0 +1,27 @@
+Project Overview
+Project Codebase	- pdf
+Set & Explore OpenAI APIs
+Using OpenAI with npm
+Using OpenAI with API endpoints
+Creating Models
+Setting up Utils
+Connecting with Database
+Setup "test" Route
+Setup Routes
+Setup "chat" Route
+Starting with Frontend: Frontend setup
+Building the Sidebar
+Styling Sidebar
+Building ChatWindow
+Styling ChatWindow
+Functionality: Get Reply for Prompt
+Adding Loader
+Display Chats
+Format GPT Reply
+Add Typing Effect
+Display Thread History
+Configure New Chat
+Display chats in Thread
+Delete a Thread
+Implement Dropdown & extra feature idea... 
+Future scope of Project - pdf
