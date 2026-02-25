@@ -1,42 +1,39 @@
-// First way to intract with OpenAI api in form npm package
-
-// import OpenAI from 'openai';
-// import 'dotenv/config';
-
-// const client = new OpenAI({
-//   apiKey: process.env.OPENAI_API_KEY, // This is the default and can be omitted
-// });
-
-// const response = await client.responses.create({
-//   model: 'gpt-4o-mini',
-//   input: 'Joke related to Computer Science',
-// });
-
-// console.log(response.output_text);
-
-// Using OpenAI with API endpoints
-
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import mongoose from "mongoose";
+import path from "path"; // Added at the top
+import { fileURLToPath } from "url"; // Added at the top
 import chatRoutes from "./routes/chat.js";
 
 const app = express();
 const PORT = 8080;
 
-// this will help when we use our frontend with backend
-app.use(express.json()); //used to parse incoming request
+// Since you're using ES Modules (import/export), we need to manually define __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.json()); 
 app.use(cors());
 
+// 1. API Routes (Check these first)
 app.use("/api", chatRoutes);
+
+// 2. Serve Frontend Static Files
+// This assumes your React build folder is in a folder named 'client/dist' relative to server.js
+const frontendPath = path.join(__dirname, "../client/dist"); 
+app.use(express.static(frontendPath));
+
+// 3. Catch-all: Send the index.html for any other route (Essential for React Router)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`server running on ${PORT}`);
-  connectDB(); //after server start we want to connect to db
+  connectDB();
 });
 
-// Connecting with DB
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
@@ -45,28 +42,3 @@ const connectDB = async () => {
     console.log("Failed to connect with Db", err);
   }
 };
-// app.post("/test", async(req, res)=>{
-//   const options = {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-//     },
-//     body: JSON.stringify({
-//       model: "gpt-4o-mini",
-//       messages: [{
-//          role: "user",
-//         // content: "Hello!"
-//         content: req.body.message
-//     }]
-//     })
-//   }
-//   try{
-//     const response = await fetch("https://api.openai.com/v1/chat/completions", options);
-//     const data = await response.json();
-//     // console.log(data.choices[0].message.content);  //reply
-//     res.send(data.choices[0].message.content);
-//   }catch(err){
-//       console.log(err);
-//   }
-// })
