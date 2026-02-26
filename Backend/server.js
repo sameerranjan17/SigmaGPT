@@ -16,7 +16,7 @@ app.use(cors());
 // at the "/" path, or it will think your server crashed.
 // app.get("/", (req, res) => {
     // app.get('(.*)', (req, res) => {
-        app.get('/:any*', (req, res) =>{ 
+   app.get('/:any(.*)', (req, res) => { 
     res.send("SigmaGPT API is Live and Running!");
 });
 
