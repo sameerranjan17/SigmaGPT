@@ -15,7 +15,8 @@ app.use(cors());
 // FIX 2: Add a root route. Render's "Health Check" needs a 200 OK response 
 // at the "/" path, or it will think your server crashed.
 // app.get("/", (req, res) => {
-    app.get('(.*)', (req, res) => { 
+    // app.get('(.*)', (req, res) => {
+        app.get('/:any*', (req, res) =>{ 
     res.send("SigmaGPT API is Live and Running!");
 });
 
