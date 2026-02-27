@@ -17,7 +17,7 @@ function Sidebar() {
 
   const getAllThreads = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/thread");
+      const response = await fetch("/api/thread");
       const res = await response.json();
       const filteredData = res.map((thread) => ({
         threadId: thread.threadId,
@@ -47,7 +47,7 @@ function Sidebar() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/thread/${newThreadId}`,
+        `/api/thread/${newThreadId}`,
       );
       const res = await response.json();
       console.log(res);
@@ -62,7 +62,7 @@ function Sidebar() {
   const deleteThread = async (threadId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/thread/${threadId}`,
+        `/api/thread/${threadId}`,
         { method: "DELETE" },
       );
       const res = await response.json();
